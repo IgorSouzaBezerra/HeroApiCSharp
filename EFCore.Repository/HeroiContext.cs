@@ -1,11 +1,11 @@
-﻿using EFCore.Dominio;
+﻿using EFCore.Domain;
 using Microsoft.EntityFrameworkCore;
 
 namespace EFCore.Repository
 {
     public class HeroiContext : DbContext
     {
-        public HeroiContext(DbContextOptions<HeroiContext> options) : base(options){}
+        public HeroiContext(DbContextOptions<HeroiContext> options) : base(options) {}
 
         public DbSet<Heroi> Herois { get; set; }
         public DbSet<Batalha> Batalhas { get; set; }

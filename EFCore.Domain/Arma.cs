@@ -1,4 +1,4 @@
-﻿namespace EFCore.Dominio
+﻿namespace EFCore.Domain
 {
     public class Arma
     {

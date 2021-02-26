@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCore.Repository.Migrations
 {
     [DbContext(typeof(HeroiContext))]
-    [Migration("20210226132904_Init")]
-    partial class Init
+    [Migration("20210226150102_Initial")]
+    partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -21,7 +21,7 @@ namespace EFCore.Repository.Migrations
                 .HasAnnotation("ProductVersion", "5.0.3")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("EFCore.Dominio.Arma", b =>
+            modelBuilder.Entity("EFCore.Domain.Arma", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -44,7 +44,7 @@ namespace EFCore.Repository.Migrations
                     b.ToTable("Armas");
                 });
 
-            modelBuilder.Entity("EFCore.Dominio.Batalha", b =>
+            modelBuilder.Entity("EFCore.Domain.Batalha", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -68,7 +68,7 @@ namespace EFCore.Repository.Migrations
                     b.ToTable("Batalhas");
                 });
 
-            modelBuilder.Entity("EFCore.Dominio.Heroi", b =>
+            modelBuilder.Entity("EFCore.Domain.Heroi", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -83,7 +83,7 @@ namespace EFCore.Repository.Migrations
                     b.ToTable("Herois");
                 });
 
-            modelBuilder.Entity("EFCore.Dominio.HeroiBatalha", b =>
+            modelBuilder.Entity("EFCore.Domain.HeroiBatalha", b =>
                 {
                     b.Property<int>("BatalhaId")
                         .HasColumnType("int");
@@ -98,7 +98,7 @@ namespace EFCore.Repository.Migrations
                     b.ToTable("HeroisBatalhas");
                 });
 
-            modelBuilder.Entity("EFCore.Dominio.IdentidadeSecreta", b =>
+            modelBuilder.Entity("EFCore.Domain.IdentidadeSecreta", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -119,24 +119,24 @@ namespace EFCore.Repository.Migrations
                     b.ToTable("IdentidadeSecretas");
                 });
 
-            modelBuilder.Entity("EFCore.Dominio.Arma", b =>
+            modelBuilder.Entity("EFCore.Domain.Arma", b =>
                 {
-                    b.HasOne("EFCore.Dominio.Heroi", "Heroi")
+                    b.HasOne("EFCore.Domain.Heroi", "Heroi")
                         .WithMany("Armas")
                         .HasForeignKey("HeroiId");
 
                     b.Navigation("Heroi");
                 });
 
-            modelBuilder.Entity("EFCore.Dominio.HeroiBatalha", b =>
+            modelBuilder.Entity("EFCore.Domain.HeroiBatalha", b =>
                 {
-                    b.HasOne("EFCore.Dominio.Batalha", "Batalho")
+                    b.HasOne("EFCore.Domain.Batalha", "Batalho")
                         .WithMany("HeroisBatalhas")
                         .HasForeignKey("BatalhaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("EFCore.Dominio.Heroi", "Heroi")
+                    b.HasOne("EFCore.Domain.Heroi", "Heroi")
                         .WithMany("HeroisBatalhas")
                         .HasForeignKey("HeroiId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -147,23 +147,23 @@ namespace EFCore.Repository.Migrations
                     b.Navigation("Heroi");
                 });
 
-            modelBuilder.Entity("EFCore.Dominio.IdentidadeSecreta", b =>
+            modelBuilder.Entity("EFCore.Domain.IdentidadeSecreta", b =>
                 {
-                    b.HasOne("EFCore.Dominio.Heroi", "Heroi")
+                    b.HasOne("EFCore.Domain.Heroi", "Heroi")
                         .WithOne("Identidade")
-                        .HasForeignKey("EFCore.Dominio.IdentidadeSecreta", "HeroiId")
+                        .HasForeignKey("EFCore.Domain.IdentidadeSecreta", "HeroiId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Heroi");
                 });
 
-            modelBuilder.Entity("EFCore.Dominio.Batalha", b =>
+            modelBuilder.Entity("EFCore.Domain.Batalha", b =>
                 {
                     b.Navigation("HeroisBatalhas");
                 });
 
-            modelBuilder.Entity("EFCore.Dominio.Heroi", b =>
+            modelBuilder.Entity("EFCore.Domain.Heroi", b =>
                 {
                     b.Navigation("Armas");
 

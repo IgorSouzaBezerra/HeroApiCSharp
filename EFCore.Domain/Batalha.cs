@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EFCore.Dominio
+namespace EFCore.Domain
 {
     public class Batalha
     {
