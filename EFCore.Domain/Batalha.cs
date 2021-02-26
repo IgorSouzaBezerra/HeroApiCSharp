@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EFCore.WebApi.Models
+namespace EFCore.Dominio
 {
     public class Batalha
     {
