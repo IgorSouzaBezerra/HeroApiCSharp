@@ -2,7 +2,9 @@
 using EFCore.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace EFCore.WebApi.Controllers
 {
@@ -33,23 +35,14 @@ namespace EFCore.WebApi.Controllers
         }
 
         [HttpPost]
-        public ActionResult Post()
+        public ActionResult Post([FromBody] Heroi model)
         {
             try
             {
-                var heroi = new Heroi
-                {
-                    Nome = "Batman",
-                    Armas = new List<Arma>
-                    {
-                        new Arma { Nome = "Kunai" },
-                    }
-                };
-
-                _context.Herois.Add(heroi);
+                _context.Herois.Add(model);
                 _context.SaveChanges();
 
-                return Ok("BAZINGA");
+                return Ok(model);
             }
             catch (Exception ex)
             {
