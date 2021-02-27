@@ -24,7 +24,7 @@ namespace EFCore.WebApi.Controllers
         {
             try
             {
-                var herois = _context.Herois;
+                var herois = _context.Herois.Include("Identidade").Include("Armas");
                 return Ok(herois);
             }
             catch (Exception ex)
