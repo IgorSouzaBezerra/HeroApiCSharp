@@ -26,10 +26,7 @@ namespace EFCore.Repository.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("HeoirId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("HeroiId")
+                    b.Property<int>("HeroiId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -121,7 +118,9 @@ namespace EFCore.Repository.Migrations
                 {
                     b.HasOne("EFCore.Domain.Heroi", "Heroi")
                         .WithMany("Armas")
-                        .HasForeignKey("HeroiId");
+                        .HasForeignKey("HeroiId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Heroi");
                 });

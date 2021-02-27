@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace EFCore.Repository.Migrations
 {
     [DbContext(typeof(HeroiContext))]
-    [Migration("20210226150102_Initial")]
+    [Migration("20210227152039_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -28,10 +28,7 @@ namespace EFCore.Repository.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int>("HeoirId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("HeroiId")
+                    b.Property<int>("HeroiId")
                         .HasColumnType("int");
 
                     b.Property<string>("Nome")
@@ -123,7 +120,9 @@ namespace EFCore.Repository.Migrations
                 {
                     b.HasOne("EFCore.Domain.Heroi", "Heroi")
                         .WithMany("Armas")
-                        .HasForeignKey("HeroiId");
+                        .HasForeignKey("HeroiId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Heroi");
                 });

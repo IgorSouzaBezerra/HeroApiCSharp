@@ -43,8 +43,7 @@ namespace EFCore.Repository.Migrations
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     Nome = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    HeroiId = table.Column<int>(type: "int", nullable: true),
-                    HeoirId = table.Column<int>(type: "int", nullable: false)
+                    HeroiId = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -54,7 +53,7 @@ namespace EFCore.Repository.Migrations
                         column: x => x.HeroiId,
                         principalTable: "Herois",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
